@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   HStack,
   Icon,
@@ -9,16 +10,13 @@ import {
   Text,
   VStack,
 } from "native-base";
-import { AntDesign } from "@expo/vector-icons";
+
+import FooterComponent from "./footer";
 export default function HomeComponent() {
   return (
     <>
       <NativeBaseProvider>
         <HStack>
-          <Box>HomeComponent</Box>
-          <Box>HomeComponent</Box>
-          <Box>HomeComponent</Box>
-          <Box>HomeComponent</Box>
           <Box>HomeComponent</Box>
           <Box>HomeComponent</Box>
         </HStack>

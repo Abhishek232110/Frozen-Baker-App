@@ -13,14 +13,14 @@ export default function FooterComponent() {
   return (
     <>
       <View>
-        <HStack space="16" paddingLeft={3}>
+        <HStack justifyContent="space-between">
           <VStack space={1} alignItems="center">
             <AntDesign name="home" size={30} color="black" />
             <Text>Home</Text>
           </VStack>
           <VStack space={1} alignItems="center">
             <AntDesign name="home" size={30} color="black" />
-            <Text>Home</Text>
+            <Text>Catogery</Text>
           </VStack>
           <VStack space={1} alignItems="center">
             <AntDesign name="home" size={30} color="black" />

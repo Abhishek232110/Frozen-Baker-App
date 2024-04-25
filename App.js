@@ -4,13 +4,17 @@ import { Center, Flex, NativeBaseProvider, Spacer, VStack } from "native-base";
 import HeaderComponnet from "./src/home/header";
 import HomeComponent from "./src/home/home";
 import FooterComponent from "./src/home/footer";
+import LoginUser from "./src/user/login";
+import RegisterUser from "./src/user/register";
+import HomeComponentss from "./src/navigationscreens/homescreen";
 
 // extend the theme
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <VStack
+      <HomeComponentss />
+      {/* <VStack
         h="full"
         paddingBottom="10px"
         paddingTop="40px"
@@ -19,9 +23,8 @@ export default function App() {
         bg="warmGray.200"
       >
         <HeaderComponnet />
-        <HomeComponent />
         <FooterComponent />
-      </VStack>
+      </VStack> */}
     </NativeBaseProvider>
   );
 }
