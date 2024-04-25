@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { Button, Text, View } from "native-base";
+import MainScreen from "../home/main";
 
 function MyBackButton() {
   const navigation = useNavigation();
@@ -39,15 +40,15 @@ function ProfileScreen() {
 
 const Stack = createNativeStackNavigator();
 
-function HomeComponentss() {
+const HomeComponentss = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default HomeComponentss;

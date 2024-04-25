@@ -1,11 +1,7 @@
 import React from "react";
-import { Center, Flex, NativeBaseProvider, Spacer, VStack } from "native-base";
+import { NativeBaseProvider } from "native-base";
 
-import HeaderComponnet from "./src/home/header";
-import HomeComponent from "./src/home/home";
-import FooterComponent from "./src/home/footer";
-import LoginUser from "./src/user/login";
-import RegisterUser from "./src/user/register";
+import MainScreen from "./src/home/main";
 import HomeComponentss from "./src/navigationscreens/homescreen";
 
 // extend the theme
@@ -13,18 +9,8 @@ import HomeComponentss from "./src/navigationscreens/homescreen";
 export default function App() {
   return (
     <NativeBaseProvider>
+      {/* <MainScreen /> */}
       <HomeComponentss />
-      {/* <VStack
-        h="full"
-        paddingBottom="10px"
-        paddingTop="40px"
-        paddingLeft="15px"
-        paddingRight="15px"
-        bg="warmGray.200"
-      >
-        <HeaderComponnet />
-        <FooterComponent />
-      </VStack> */}
     </NativeBaseProvider>
   );
 }
