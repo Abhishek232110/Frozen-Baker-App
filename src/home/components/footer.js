@@ -2,42 +2,43 @@ import {
   Box,
   Button,
   HStack,
+  Icon,
   NativeBaseProvider,
   Text,
   VStack,
   View,
 } from "native-base";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-// import { Link, useLinkTo } from "@react-navigation/native";
 
-export default function FooterComponent() {
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+export default function FooterComponent({ navigation }) {
+  const ButtonCom = ({ navigationTitle, title }) => {
+    return (
+      <>
+        <VStack alignItems="center" style={{ backgroundColor: "white" }}>
+          <Button
+            colorScheme="white"
+            onPress={() => navigation.navigate(navigationTitle)}
+          >
+            <MaterialCommunityIcons
+              name="account-box-outline"
+              size={40}
+              color="black"
+            />
+            <Text>{title}</Text>
+          </Button>
+        </VStack>
+      </>
+    );
+  };
   return (
     <>
       <View>
         <HStack justifyContent="space-between">
-          <VStack space={1} alignItems="center">
-            <AntDesign name="home" size={30} color="black" />
-            <Text>Home</Text>
-          </VStack>
-          <VStack space={1} alignItems="center">
-            <Ionicons name="storefront-outline" size={24} color="black" />
-            <Text>Category</Text>
-          </VStack>
-          <VStack space={1} alignItems="center">
-            <AntDesign name="home" size={30} color="black" />
-            <Text>Home</Text>
-          </VStack>
-          <VStack space={1} alignItems="center">
-            <MaterialCommunityIcons
-              name="account-box-outline"
-              size={30}
-              color="black"
-            />
-            <Text>Account</Text>
-            {/* <Button title="Go to Profile" onPress={() => navigate("Profile")} /> */}
-          </VStack>
+          <ButtonCom navigationTitle="Home" title="Home" />
+          <ButtonCom navigationTitle="login" title="Products" />
+          <ButtonCom navigationTitle="login" title="Home" />
+          <ButtonCom navigationTitle="login" title="Account" />
         </HStack>
       </View>
     </>

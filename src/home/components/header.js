@@ -1,7 +1,14 @@
-import { Box, HStack, NativeBaseProvider, VStack } from "native-base";
+import {
+  Box,
+  Button,
+  HStack,
+  NativeBaseProvider,
+  Text,
+  VStack,
+} from "native-base";
 
 import { AntDesign } from "@expo/vector-icons";
-export default function HeaderComponnet() {
+export default function HeaderComponnet({ navigation }) {
   return (
     <>
       <NativeBaseProvider>
@@ -14,9 +21,12 @@ export default function HeaderComponnet() {
         >
           <Box>FooterComponent</Box>
           <Box>FooterComponent</Box>
-          <VStack space={1} alignItems="center">
+          <Button
+            colorScheme="white"
+            onPress={() => navigation.navigate("cart")}
+          >
             <AntDesign name="shoppingcart" size={30} color="black" />
-          </VStack>
+          </Button>
         </HStack>
       </NativeBaseProvider>
     </>

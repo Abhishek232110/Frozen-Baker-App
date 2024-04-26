@@ -3,7 +3,7 @@ import { NativeBaseProvider, Text, VStack } from "native-base";
 import HeaderComponnet from "./components/header";
 import FooterComponent from "./components/footer";
 
-const MainScreen = () => {
+const MainScreen = ({ navigation }) => {
   return (
     <NativeBaseProvider>
       <VStack
@@ -14,8 +14,8 @@ const MainScreen = () => {
         paddingRight="20px"
         bg="warmGray.200"
       >
-        <HeaderComponnet />
-        <FooterComponent />
+        <HeaderComponnet navigation={navigation} />
+        <FooterComponent navigation={navigation} />
       </VStack>
     </NativeBaseProvider>
   );

@@ -1,42 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
-import { Button, Text, View } from "native-base";
+
 import MainScreen from "../home/main";
-
-function MyBackButton() {
-  const navigation = useNavigation();
-
-  return (
-    <Button
-      title="Back"
-      paddingLeft="10"
-      paddingRight="10"
-      padding="5"
-      onPress={() => {
-        navigation.goBack();
-      }}
-    />
-  );
-}
-
-function HomeScreen({ navigation: { navigate } }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>click for Profile Screen</Text>
-      <Button title="Go to Profile" onPress={() => navigate("Profile")} />
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>click for home Screen</Text>
-      <MyBackButton />
-    </View>
-  );
-}
+import { Button, Text, View } from "native-base";
+import LoginUser from "../user/login";
+import CartItems from "../home/components/cartItems";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,11 +12,21 @@ const HomeComponentss = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={MainScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="login" component={LoginUser} />
+        <Stack.Screen name="cart" component={CartItems} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default HomeComponentss;
+
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <MainScreen navigation={navigation} />
+    </View>
+  );
+}
