@@ -1,9 +1,11 @@
-import { Text } from "native-base";
+import HomeComponent from "./home";
 
-export default function CartItems() {
+const CartItems = () => {
   return (
     <>
-      <Text>Cart</Text>
+      <HomeComponent />
     </>
   );
-}
+};
+
+export default CartItems;

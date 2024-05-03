@@ -9,8 +9,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { View, Text, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
 
-const IceCreameComponent = ({ navigation }) => {
-  const { icecream, loading } = useSelector((state) => state?.product);
+const AllProductItems = ({ navigation }) => {
+  const { users, loading } = useSelector((state) => state?.product);
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -26,7 +26,7 @@ const IceCreameComponent = ({ navigation }) => {
           paddingRight: 8,
         }}
         numColumns="2"
-        data={icecream}
+        data={users}
         renderItem={({ item }) => (
           <TouchableOpacity
             className=" my-3 rounded-md mx-auto space-y-1"
@@ -41,11 +41,18 @@ const IceCreameComponent = ({ navigation }) => {
                 <Text className="text-red-400">Flavour :</Text>
                 <Text>{item.flavour}</Text>
               </View>
-
+              {/* <View className="flex-row items-center justify-start space-x-1">
+                <Text className="text-red-400">Weight :</Text>
+                <Text>{item.weight}</Text>
+              </View> */}
               <View className="flex-row items-center justify-start space-x-2">
                 <FontAwesome name="rupee" size={18} color="black" />
                 <Text>{item.price}</Text>
               </View>
+              {/* <View className="flex-row items-center justify-start space-x-1">
+                <Text className="text-red-400">Shape :</Text>
+                <Text>{item.shape}</Text>
+              </View> */}
             </View>
           </TouchableOpacity>
         )}
@@ -54,4 +61,4 @@ const IceCreameComponent = ({ navigation }) => {
   );
 };
 
-export default IceCreameComponent;
+export default AllProductItems;

@@ -1,16 +1,18 @@
-import React from "react";
-import { NativeBaseProvider } from "native-base";
-
-import HomeComponentss from "./src/navigationscreens/homescreen";
-import Icecream from "./src/products/components/icecream";
-import MainScreen from "./src/home/main";
-
-// extend the theme
-
-export default function App() {
+import NavigationScreen from "./src/api/route";
+import { store } from "./src/api/store";
+import { Provider } from "react-redux";
+import { NativeWindStyleSheet } from "nativewind";
+import HomeComponent from "./src/home/components/home";
+const App = () => {
+  NativeWindStyleSheet.setOutput({
+    default: "native",
+  });
   return (
-    <NativeBaseProvider>
-      <HomeComponentss />
-    </NativeBaseProvider>
+    <Provider store={store}>
+      <NavigationScreen />
+      {/* <HomeComponent /> */}
+    </Provider>
   );
-}
+};
+
+export default App;
