@@ -4,7 +4,7 @@ import FooterComponent from "./components/footer";
 import { useNavigation } from "@react-navigation/native";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
-import { getFakeData } from "../user/userSlice";
+import { getFakeData, getProducts } from "../user/userSlice";
 import {
   getButterScotchData,
   getChocolateData,
@@ -40,6 +40,7 @@ const MainScreen = ({ route, navigation }) => {
     dispatch(getPastryDetails());
     dispatch(getIcecreamDetails());
     dispatch(getChocolateDetail());
+    dispatch(getProducts());
   }, []);
   useLayoutEffect(() => {
     navigater.setOptions({

@@ -1,57 +1,22 @@
 // authenticationSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  createUserApi,
-  getChocolateCake,
-  getFruitCake,
-  loginUserApi,
-} from "../api/apiConfig";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-// export const RegisterUser = createAsyncThunk(
-//   "authentication/RegisterUser",
-//   async ({ name, email, password }, { rejectWithValue }) => {
-//     const response = await fetch(createUserApi, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ name, email, password }),
-//     });
-//     try {
-//       if (response.ok) {
-//         const result = await response.json();
-//         let username = result.data.name;
-//         let useremail = result.data.email;
-//         await AsyncStorage.setItem("username", username);
-//         await AsyncStorage.setItem("useremail", useremail);
-//         return result;
-//       }
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+import { getAllProducts } from "../api/apiConfig";
+import axios from "axios";
 
-// export const LoginUser = createAsyncThunk(
-//   "authentication/loginUser",
-//   async ({ email, password }, { rejectWithValue }) => {
-//     const response = await fetch(loginUserApi, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, password }),
-//     });
-//     try {
-//       if (response.ok) {
-//         const result = await response.json();
-//         let username = result.data.name;
-//         let useremail = result.data.email;
-//         await AsyncStorage.setItem("username", username);
-//         await AsyncStorage.setItem("useremail", useremail);
-//         return result;
-//       }
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+export const getProducts = createAsyncThunk(
+  "getAllProducts",
+  async (arg, { getState }) => {
+    const state = getState();
+    const { size, pageNo, flavour } = state.users;
+    let url = `${getAllProducts}?size=${size}&pageNo=${pageNo}&flavour=${flavour}`;
+    if (flavour) {
+      url = `${url}&flavour=${flavour}`;
+    }
+    const response = await axios.get(url);
+    console.log(response.data);
+    return response.data;
+  }
+);
 
 export const getFakeData = createAsyncThunk("getFakeData", async () => {
   try {
@@ -69,6 +34,10 @@ export const getFakeData = createAsyncThunk("getFakeData", async () => {
 export const userSlice = createSlice({
   name: "authentication",
   initialState: {
+    products: [],
+    size: 10,
+    pageNo: 0,
+    flavour: "Butterscotch",
     user: null,
     loading: false,
     error: null,
@@ -90,6 +59,19 @@ export const userSlice = createSlice({
         state.error = null;
       })
       .addCase(getFakeData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Login failed";
+      })
+      .addCase(getProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+        state.error = null;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Login failed";
       });

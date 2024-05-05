@@ -59,8 +59,7 @@ export default NavigationScreen;
 
 function HomeScreen({ navigation }) {
   return (
-    <View className="flex-1  ">
-      {/* <HeaderComponnet /> */}
+    <View className="flex-1  bg-[#FEFAF6]">
       <MainScreen navigation={navigation} />
     </View>
   );

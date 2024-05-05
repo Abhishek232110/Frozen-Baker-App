@@ -74,7 +74,7 @@ const RegisterUser = ({ navigation }) => {
           <View>
             <TouchableOpacity
               onPress={registerUser}
-              className="bg-indigo-500 h-14 flex-row justify-center items-center rounded-md"
+              className="bg-buttomColor h-14 flex-row justify-center items-center rounded-md"
             >
               <Text className="text-base text-white">SIGNUP</Text>
             </TouchableOpacity>

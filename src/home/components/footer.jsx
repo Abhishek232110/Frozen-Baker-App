@@ -30,7 +30,7 @@ export default function FooterComponent({ navigation }) {
   };
   return (
     <>
-      <View className="flex-row justify-between px-4  bg-zinc-200 pt-4 pb-1  items-center">
+      <View className="flex-row justify-between px-4  rounded-t-3xl pt-4 pb-1  items-center">
         <ButtonCom
           navigationTitle="Home"
           title="Home"

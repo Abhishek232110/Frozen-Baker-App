@@ -9,6 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import AboutProduct from "./aboutProduct";
 
 export default function ProductDetails({ route, navigation }) {
   const { id } = route.params;
@@ -18,7 +19,7 @@ export default function ProductDetails({ route, navigation }) {
   const CartBuyButton = ({ buttontitle, buttonicon }) => {
     return (
       <>
-        <TouchableOpacity className="bg-indigo-600 h-14 w-40 flex-row items-center justify-center space-x-3 rounded-md">
+        <TouchableOpacity className="bg-buttomColor h-12 w-40 flex-row items-center justify-center space-x-3 rounded-md">
           {buttonicon}
           <Text className="text-white text-base font-semibold ">
             {buttontitle}
@@ -32,7 +33,7 @@ export default function ProductDetails({ route, navigation }) {
     <>
       <FlatList
         numColumns="2"
-        style={{ padding: 13 }}
+        style={{ padding: 10 }}
         data={filterData}
         renderItem={({ item }) => (
           <View className=" mx-auto space-y-10 ">
@@ -47,19 +48,15 @@ export default function ProductDetails({ route, navigation }) {
                 <Text>{item.price}</Text>
               </View>
             </View>
-            <View className="px-6 border-b border-zinc-400 pb-5">
+            <View className="px-4 border-b border-zinc-400 pb-5">
               <Text className="text-base">Add Message</Text>
               <TextInput
                 placeholder="Enter Any Message"
                 className=" border border-zinc-400 rounded-md h-12 px-2 text-base my-2"
               />
             </View>
-            <View className="px-6 border-b border-zinc-400 pb-5">
-              <Text className="text-base">Add Message</Text>
-              <TextInput
-                placeholder="Enter Any Message"
-                className=" border border-zinc-400 rounded-md h-12 px-2 text-base my-2"
-              />
+            <View className=" px-5 w-full">
+              <AboutProduct />
             </View>
 
             <View
@@ -67,6 +64,7 @@ export default function ProductDetails({ route, navigation }) {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-around",
+                paddingBottom: 30,
               }}
             >
               <CartBuyButton

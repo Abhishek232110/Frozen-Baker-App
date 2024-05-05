@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 
 import {
   createDelivaryDetails,
+  getAllProducts,
   getButterScotchCake,
   getChocolateApi,
   getChocolateCake,
@@ -16,6 +17,8 @@ import {
   getVanillaCake,
 } from "../api/apiConfig";
 import axios from "axios";
+
+// Product Details
 
 // Product Details
 export const getProductDetails = createAsyncThunk("getProduct", async () => {

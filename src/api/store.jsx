@@ -3,12 +3,12 @@
 //   storage,
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import auth from "../user/userSlice";
+import userReducer from "../user/userSlice";
 import productSlice from "../products/productSlice";
 
 // };
 const reducer = combineReducers({
-  users: auth,
+  users: userReducer,
   product: productSlice,
 });
 // const persistReducers = persistReducer(persistConfig, reducer);

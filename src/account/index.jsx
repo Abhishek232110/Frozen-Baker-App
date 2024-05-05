@@ -51,7 +51,7 @@ const AccountScreen = ({ navigation }) => {
               <View className=" py-2  space-y-2">
                 <Image source={loginimg} className="h-32  w-screen" />
                 <TouchableOpacity
-                  className="flex-row justify-center bg-indigo-600 py-4 rounded-md "
+                  className="flex-row justify-center bg-buttomColor py-4 rounded-md "
                   onPress={() => navigation.navigate("SignIn")}
                 >
                   <Text className="text-white font-semibold">

@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const UserLogout = () => {
+const UserLogout = ({ incomingInput }) => {
+  console.log("query", incomingInput);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   let user = { name: name, email: email };
