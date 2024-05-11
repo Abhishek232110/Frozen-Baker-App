@@ -4,20 +4,15 @@ import { EvilIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
 const SearchItem = ({ onQuery }) => {
-  const [open, setOpen] = useState(false);
-  console.log("open", open);
-  const openMenu = () => {
-    setOpen(true);
-  };
   const setOnQueryChange = (text) => {
     onQuery(text);
   };
   return (
-    <View className="flex-row items-center w-full h-10 rounded-md border border-buttomColor">
+    <View className="flex-row items-center w-full h-10 rounded-md border border-buttomColor bg-[#f7f0f799] mt-2">
       <EvilIcons
         name="search"
         size={35}
-        color="#FA7070"
+        color="#61677A"
         style={{ paddingBottom: 4 }}
       />
       <TextInput

@@ -31,63 +31,55 @@ const NavigationButton = ({ navigation }) => {
           }}
         >
           <RenderButton
-            logoIcon={<AntDesign name="user" size={24} color="black" />}
+            logoIcon={<AntDesign name="user" size={24} color="#61677A" />}
             navigation={navigation}
             rendercomponentname="Personal Information"
             renderscreen="Personal Information"
-            rightArrowIcon={<AntDesign name="right" size={24} color="black" />}
+            rightArrowIcon={
+              <AntDesign name="right" size={24} color="#61677A" />
+            }
           />
           <RenderButton
             logoIcon={
-              <SimpleLineIcons name="location-pin" size={24} color="black" />
+              <SimpleLineIcons name="location-pin" size={24} color="#61677A" />
             }
             navigation={navigation}
             rendercomponentname="Saved Addresses"
             renderscreen="Saved Addresses"
-            rightArrowIcon={<AntDesign name="right" size={24} color="black" />}
+            rightArrowIcon={
+              <AntDesign name="right" size={24} color="#61677A" />
+            }
           />
           <RenderButton
-            logoIcon={<Entypo name="new-message" size={20} color="black" />}
+            logoIcon={<Entypo name="new-message" size={20} color="#61677A" />}
             navigation={navigation}
             rendercomponentname="Share App Feedback"
             renderscreen="Saved Addresses"
-            rightArrowIcon={<AntDesign name="right" size={24} color="black" />}
+            rightArrowIcon={
+              <AntDesign name="right" size={24} color="#61677A" />
+            }
           />
           <RenderButton
-            logoIcon={<MaterialIcons name="privacy-tip" size={24} />}
+            logoIcon={
+              <MaterialIcons name="privacy-tip" size={24} color="#61677A" />
+            }
             navigation={navigation}
             rendercomponentname="Privacy Policy"
             renderscreen="Saved Addresses"
-            rightArrowIcon={<AntDesign name="right" size={24} color="black" />}
+            rightArrowIcon={
+              <AntDesign name="right" size={24} color="#61677A" />
+            }
           />
 
           <TouchableOpacity className="bg-zinc-100" onPress={clearstore}>
             <View className="flex-row  items-center justify-between w-full">
               <View className="flex-row items-center space-x-3">
-                <MaterialIcons name="logout" size={24} color="black" />
+                <MaterialIcons name="logout" size={24} color="#61677A" />
                 <Text>Logout</Text>
               </View>
-              <AntDesign name="right" size={24} color="black" />
+              <AntDesign name="right" size={24} color="#61677A" />
             </View>
           </TouchableOpacity>
-
-          {/* {seller ? (
-            <RenderButton
-              logoIcon={
-                <MaterialIcons
-                  name="drive-folder-upload"
-                  size={24}
-                  color="black"
-                />
-              }
-              navigation={navigation}
-              rendercomponentname="Upload Product"
-              renderscreen="Upload Product"
-              rightArrowIcon={
-                <AntDesign name="right" size={24} color="black" />
-              }
-            />
-          ) : null} */}
         </View>
       </>
     );

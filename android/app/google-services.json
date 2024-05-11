@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "539832202321",
+    "project_id": "bakeryproject-cb40b",
+    "storage_bucket": "bakeryproject-cb40b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539832202321:android:5d3ba61422d7b63f8e3470",
+        "android_client_info": {
+          "package_name": "com.abhishek.frozenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539832202321-sk1ctui2b8r4oh7nha09rm0ukq92rn7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATiGYxBRa7S73mASSOZKlAd-k0Lg5F82c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539832202321-sk1ctui2b8r4oh7nha09rm0ukq92rn7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

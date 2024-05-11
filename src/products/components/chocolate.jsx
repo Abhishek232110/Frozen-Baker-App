@@ -30,7 +30,11 @@ const ChocolateComponent = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             className=" my-3 rounded-md mx-auto space-y-1"
-            onPress={() => navigation.navigate("Home")}
+            onPress={() =>
+              navigation.navigate("ProductDetails", {
+                id: item._id,
+              })
+            }
           >
             <Image
               source={{ uri: item.imageUrl }}

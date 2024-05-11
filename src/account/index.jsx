@@ -26,11 +26,11 @@ const AccountScreen = ({ navigation }) => {
         <View className="flex-row justify-between mt-5">
           <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
             <Text>{title1Icon}</Text>
-            <Text>{title1}</Text>
+            <Text className="text-textColor">{title1}</Text>
           </View>
           <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
             <Text>{title2Icon}</Text>
-            <Text>{title2}</Text>
+            <Text className="text-textColor">{title2}</Text>
           </View>
         </View>
       </>
@@ -65,14 +65,14 @@ const AccountScreen = ({ navigation }) => {
             <UseableComp
               title1="My Orders"
               title1Icon={
-                <Ionicons name="cube-outline" size={20} color="black" />
+                <Ionicons name="cube-outline" size={20} color="#61677A" />
               }
               title2="Remainders"
               title2Icon={
                 <MaterialCommunityIcons
                   name="bell-ring-outline"
                   size={24}
-                  color="black"
+                  color="#61677A"
                 />
               }
             />
@@ -82,11 +82,13 @@ const AccountScreen = ({ navigation }) => {
                 <Ionicons
                   name="chatbox-ellipses-outline"
                   size={20}
-                  color="black"
+                  color="#61677A"
                 />
               }
               title2="Wishlist"
-              title2Icon={<FontAwesome6 name="heart" size={20} color="black" />}
+              title2Icon={
+                <FontAwesome6 name="heart" size={20} color="#61677A" />
+              }
             />
           </View>
           <View>

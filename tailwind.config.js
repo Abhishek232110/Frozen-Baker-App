@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        buttomColor: "#FA7070",
-        bgColor: "#FA7070",
+        buttomColor: "#E4AC4F",
+        bgColor: "#E4AC4F",
+        textColor: "#61677A",
       },
     },
   },

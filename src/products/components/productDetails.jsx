@@ -1,25 +1,37 @@
 import {
   FlatList,
   Image,
+  ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import AboutProduct from "./aboutProduct";
+import { addCart, orderedId } from "../../user/userSlice";
+import { useState } from "react";
 
 export default function ProductDetails({ route, navigation }) {
+  const [productId, setProductId] = useState(" ");
   const { id } = route.params;
-  const getPastryData = useSelector((state) => state.product?.pastry);
-  const filterData = getPastryData.filter((ele) => ele._id === id);
-  //   console.log("getdata", filterData);
-  const CartBuyButton = ({ buttontitle, buttonicon }) => {
+  const dispatch = useDispatch();
+  const { loading, users } = useSelector((state) => state?.product);
+  const filterData = users.filter((ele) => ele._id === id);
+  const CartBuyButton = ({
+    buttontitle,
+    buttonicon,
+    itemData,
+    handlPressEvent,
+  }) => {
+    setProductId(itemData);
     return (
       <>
-        <TouchableOpacity className="bg-buttomColor h-12 w-40 flex-row items-center justify-center space-x-3 rounded-md">
+        <TouchableOpacity
+          className=" bg-buttomColor h-12  w-full flex-row items-center justify-center space-x-3 rounded-md"
+          onPress={handlPressEvent}
+        >
           {buttonicon}
           <Text className="text-white text-base font-semibold ">
             {buttontitle}
@@ -29,60 +41,128 @@ export default function ProductDetails({ route, navigation }) {
     );
   };
 
+  const buyNow = () => {
+    dispatch(orderedId(productId._id));
+    navigation.navigate("buynow");
+  };
+  const handlPressEvent = () => {
+    dispatch(addCart(productId));
+    navigation.navigate("cart");
+  };
+
+  const CakeData = ({ weight, title }) => {
+    return (
+      <>
+        <View className="flex-row items-center space-x-2">
+          <Text className="text-bgColor text-base">{title} :</Text>
+          <Text className="text-[#61677A]">{weight}</Text>
+        </View>
+      </>
+    );
+  };
+
   return (
     <>
-      <FlatList
-        numColumns="2"
-        style={{ padding: 10 }}
-        data={filterData}
-        renderItem={({ item }) => (
-          <View className=" mx-auto space-y-10 ">
-            <Image source={{ uri: item.imageUrl }} className="w-screen h-52" />
-            <View className="flex-1 items-start pl-8 space-y-2 border-b border-zinc-400 pb-5">
-              <View className="flex-row items-center justify-start space-x-1">
-                <Text className="text-red-400">Flavour :</Text>
-                <Text>{item.flavour}</Text>
-              </View>
-              <View className="flex-row items-center justify-start space-x-2">
-                <FontAwesome name="rupee" size={18} color="black" />
-                <Text>{item.price}</Text>
-              </View>
-            </View>
-            <View className="px-4 border-b border-zinc-400 pb-5">
-              <Text className="text-base">Add Message</Text>
-              <TextInput
-                placeholder="Enter Any Message"
-                className=" border border-zinc-400 rounded-md h-12 px-2 text-base my-2"
-              />
-            </View>
-            <View className=" px-5 w-full">
-              <AboutProduct />
-            </View>
+      {loading ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        <View>
+          {filterData
+            ? filterData?.map((item) => {
+                return (
+                  <>
+                    <View className="flex-col justify-between h-full ">
+                      <View className=" p-3 bg-[#F4EDE7]">
+                        <Image
+                          source={{ uri: item.imageUrl }}
+                          className="w-80  h-80 mx-auto rounded-tl-[60] rounded-br-[60]  "
+                        />
+                      </View>
+                      <ScrollView>
+                        <View className="flex-1  items-start mx-3 space-y-1 pt-3 border-b border-zinc-400 pb-4">
+                          {item.name ? (
+                            <View className="flex-row space-x-3">
+                              <Text className="text-bgColor">Name : </Text>
+                              <Text className="text-textColor">
+                                {item.name}
+                              </Text>
+                            </View>
+                          ) : null}
+                          <View className="flex-row items-center space-x-10">
+                            <CakeData title="Flavour" weight={item.flavour} />
+                            <View className="flex-row items-center justify-start space-x-2">
+                              <FontAwesome
+                                name="rupee"
+                                size={20}
+                                color="#61677A"
+                              />
+                              <Text className="text-base text-[#61677A]">
+                                {item.price}
+                              </Text>
+                            </View>
+                          </View>
+                          <View className="flex-row items-center  space-x-10 ">
+                            <View>
+                              <CakeData title="Weight" weight={item.weight} />
+                            </View>
+                            <View>
+                              {item.shape ? (
+                                <CakeData title="Shape" weight={item.shape} />
+                              ) : null}
+                            </View>
+                          </View>
+                        </View>
+                        <View
+                          style={{
+                            marginLeft: 15,
+                            marginRight: 15,
+                            paddingTop: 18,
+                          }}
+                        >
+                          <AboutProduct />
+                        </View>
+                      </ScrollView>
 
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-around",
-                paddingBottom: 30,
-              }}
-            >
-              <CartBuyButton
-                buttontitle="Add To Cart"
-                buttonicon={
-                  <AntDesign name="shoppingcart" size={24} color="white" />
-                }
-              />
-              <CartBuyButton
-                buttontitle="Buy Now"
-                buttonicon={
-                  <FontAwesome name="money" size={24} color="white" />
-                }
-              />
-            </View>
-          </View>
-        )}
-      ></FlatList>
+                      <View className="flex-row justify-between  items-end space-x-1 mx-3 pb-3">
+                        <View className="w-[49%] ">
+                          <CartBuyButton
+                            handlPressEvent={handlPressEvent}
+                            buttontitle="Add To Cart"
+                            buttonicon={
+                              <AntDesign
+                                name="shoppingcart"
+                                size={24}
+                                color="white"
+                              />
+                            }
+                          />
+                        </View>
+                        <View className="w-[49%] ">
+                          <CartBuyButton
+                            handlPressEvent={buyNow}
+                            itemData={item}
+                            buttontitle="Buy Now"
+                            buttonicon={
+                              <FontAwesome
+                                name="money"
+                                size={24}
+                                color="white"
+                              />
+                            }
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  </>
+                );
+              })
+            : null}
+        </View>
+      )}
     </>
   );
 }

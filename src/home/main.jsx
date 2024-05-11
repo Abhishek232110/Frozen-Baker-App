@@ -4,7 +4,7 @@ import FooterComponent from "./components/footer";
 import { useNavigation } from "@react-navigation/native";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
-import { getFakeData, getProducts } from "../user/userSlice";
+import { allInOneApi, getFakeData, getProducts } from "../user/userSlice";
 import {
   getButterScotchData,
   getChocolateData,
@@ -40,7 +40,7 @@ const MainScreen = ({ route, navigation }) => {
     dispatch(getPastryDetails());
     dispatch(getIcecreamDetails());
     dispatch(getChocolateDetail());
-    dispatch(getProducts());
+    dispatch(allInOneApi());
   }, []);
   useLayoutEffect(() => {
     navigater.setOptions({
@@ -48,7 +48,7 @@ const MainScreen = ({ route, navigation }) => {
     });
   });
   return (
-    <View className="flex-1 justify-between  h-screen">
+    <View className="flex-1 justify-between mt-2 h-screen">
       <HeaderComponnet navigation={navigation} />
       <FooterComponent navigation={navigation} />
     </View>

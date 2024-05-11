@@ -1,19 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { EvilIcons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 export default function FooterComponent({ navigation }) {
-  // const [name, setName] = useState();
-
-  // const getData = async () => {
-  //   const name = await AsyncStorage.getItem("username");
-  //   setName(name);
-  // };
-  // getData();
   const ButtonCom = ({ navigationTitle, title, titleIcon }) => {
     return (
       <>
@@ -23,29 +12,24 @@ export default function FooterComponent({ navigation }) {
           >
             {titleIcon}
           </TouchableOpacity>
-          <Text>{title}</Text>
+          <Text className="text-[#61677A]">{title}</Text>
         </View>
       </>
     );
   };
   return (
     <>
-      <View className="flex-row justify-between px-4  rounded-t-3xl pt-4 pb-1  items-center">
+      <View className="flex-row justify-between px-5   pt-4 pb-2  items-center bg-[#F1EFEF]">
         <ButtonCom
           navigationTitle="Home"
           title="Home"
-          titleIcon={<AntDesign name="home" size={25} />}
-        />
-        <ButtonCom
-          navigationTitle="Products"
-          title="Products"
-          titleIcon={<Ionicons name="storefront-outline" size={25} />}
+          titleIcon={<AntDesign name="home" size={25} color="#e7a42f" />}
         />
         <ButtonCom
           navigationTitle="Products"
           title="Products"
           titleIcon={
-            <MaterialCommunityIcons name="account-box-outline" size={25} />
+            <Ionicons name="storefront-outline" size={25} color="#61677A" />
           }
         />
         <ButtonCom
@@ -54,7 +38,7 @@ export default function FooterComponent({ navigation }) {
             <MaterialCommunityIcons
               name="account-circle-outline"
               size={24}
-              color="black"
+              color="#61677A"
             />
           }
           title="Account"

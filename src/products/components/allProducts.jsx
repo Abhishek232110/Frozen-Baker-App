@@ -1,32 +1,11 @@
 import { FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { View, Text, ActivityIndicator } from "react-native";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import SearchItem from "../../home/components/searchItem";
 
-const AllProductItems = ({ navigation }) => {
-  const [filterData, setFilteredData] = useState([]);
-  const { users, loading } = useSelector((state) => state?.product);
-  useEffect(() => {
-    setFilteredData(users ? users : []);
-  }, [users]);
-
-  const setOnQueryChange = (inputText) => {
-    const filterRes = users.filter((item) =>
-      item.flavour.toLowerCase().includes(inputText.toLowerCase())
-    );
-    console.log("filterRes", filterRes);
-    if (filterRes) {
-      setFilteredData(filterRes);
-    }
-  };
-
+const AllProductItems = ({ navigation, loading, filterData }) => {
   return (
     <>
-      <View className=" px-6 mb-3 flex-row justify-start  items-center space-x-6">
-        <SearchItem onQuery={setOnQueryChange} />
-      </View>
+      <View className=" px-6 mb-3 flex-row justify-start  items-center space-x-6"></View>
       {loading ? (
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -43,34 +22,31 @@ const AllProductItems = ({ navigation }) => {
           data={filterData}
           renderItem={({ item }) => (
             <TouchableOpacity
-              className=" my-3 rounded-md mx-auto space-y-1 "
-              onPress={() => navigation.navigate("Home")}
+              className=" my-1 rounded-md mx-auto space-y-1 bg-[#F4EDE7] p-4 "
+              onPress={() =>
+                navigation.navigate("ProductDetails", {
+                  id: item._id,
+                })
+              }
             >
               <Image
                 source={{ uri: item.imageUrl }}
                 style={{
-                  width: 160,
-                  height: 150,
+                  width: 150,
+                  height: 130,
                   borderRadius: 5,
                 }}
               />
               <View>
                 <View className="flex-row items-center justify-start space-x-1">
-                  <Text className="text-red-400">Flavour :</Text>
-                  <Text>{item.flavour}</Text>
+                  <Text className="text-bgColor">Flavour :</Text>
+                  <Text className="text-[#61677A]">{item.flavour}</Text>
                 </View>
-                {/* <View className="flex-row items-center justify-start space-x-1">
-                <Text className="text-red-400">Weight :</Text>
-                <Text>{item.weight}</Text>
-              </View> */}
+
                 <View className="flex-row items-center justify-start space-x-2">
-                  <FontAwesome name="rupee" size={18} color="black" />
-                  <Text>{item.price}</Text>
+                  <FontAwesome name="rupee" size={18} color="#61677A" />
+                  <Text className="text-[#61677A]">{item.price}</Text>
                 </View>
-                {/* <View className="flex-row items-center justify-start space-x-1">
-                <Text className="text-red-400">Shape :</Text>
-                <Text>{item.shape}</Text>
-              </View> */}
               </View>
             </TouchableOpacity>
           )}

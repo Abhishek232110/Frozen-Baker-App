@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, Image, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { View, Text, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
@@ -18,11 +12,7 @@ const CakeComponent = ({ navigation }) => {
       </View>
     );
   }
-  const handleNavigation = (_id) => {
-    navigation.navigate("Saved Addresses", {
-      id: item._id,
-    });
-  };
+
   return (
     <>
       <FlatList
@@ -35,7 +25,11 @@ const CakeComponent = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             className=" my-3 rounded-md mx-auto space-y-1"
-            onPress={() => handleNavigation(item._id)}
+            onPress={() =>
+              navigation.navigate("ProductDetails", {
+                id: item._id,
+              })
+            }
           >
             <Image
               source={{ uri: item.imageUrl }}

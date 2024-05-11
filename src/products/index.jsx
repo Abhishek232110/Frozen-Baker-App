@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RenderButton from "../common/Button";
 import HomeComponent from "../home/components/home";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,25 +6,29 @@ import { Text, TouchableOpacity, View } from "react-native";
 import AllProductItems from "./components/allProducts";
 
 const ProductComponent = ({ navigation }) => {
-  const data = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+  const { users, loading } = useSelector((state) => state.product);
 
   const ProductNavigationButton = ({
     navigation,
     screenname,
     rendercomponentname,
   }) => {
+    const handleRenderComponent = () => {
+      navigation.navigate(rendercomponentname);
+    };
+
     return (
       <>
         <TouchableOpacity
           className="w-36 h-12 border-zinc-500 border rounded-md items-center justify-center"
-          onPress={() => navigation.navigate(rendercomponentname)}
+          onPress={handleRenderComponent}
         >
           <Text>{screenname}</Text>
         </TouchableOpacity>
       </>
     );
   };
+
   return (
     <>
       <View className="py-3 px-3">
@@ -53,7 +57,6 @@ const ProductComponent = ({ navigation }) => {
           />
         </View>
       </View>
-      <AllProductItems />
     </>
   );
 };

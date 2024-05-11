@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllProducts } from "../api/apiConfig";
 import axios from "axios";
 
-export const getProducts = createAsyncThunk(
+export const allInOneApi = createAsyncThunk(
   "getAllProducts",
   async (arg, { getState }) => {
     const state = getState();
@@ -13,7 +13,6 @@ export const getProducts = createAsyncThunk(
       url = `${url}&flavour=${flavour}`;
     }
     const response = await axios.get(url);
-    console.log(response.data);
     return response.data;
   }
 );
@@ -35,16 +34,21 @@ export const userSlice = createSlice({
   name: "authentication",
   initialState: {
     products: [],
-    size: 10,
+    size: 20,
     pageNo: 0,
-    flavour: "Butterscotch",
+    flavour: "",
+    cart: [],
+    orderedId: [],
     user: null,
     loading: false,
     error: null,
   },
   reducers: {
-    logout: (state) => {
-      state.user = null;
+    addCart: (state, action) => {
+      state.cart.push(action.payload);
+    },
+    orderedId: (state, action) => {
+      state.orderedId.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -62,22 +66,22 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload || "Login failed";
       })
-      .addCase(getProducts.pending, (state) => {
+      .addCase(allInOneApi.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(allInOneApi.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
         state.error = null;
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(allInOneApi.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Login failed";
       });
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { addCart, orderedId } = userSlice.actions;
 
 export default userSlice.reducer;
