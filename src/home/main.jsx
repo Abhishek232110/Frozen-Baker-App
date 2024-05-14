@@ -1,10 +1,15 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import HeaderComponnet from "./components/header";
 import FooterComponent from "./components/footer";
 import { useNavigation } from "@react-navigation/native";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
-import { allInOneApi, getFakeData, getProducts } from "../user/userSlice";
+import {
+  SaveAddress,
+  allInOneApi,
+  getFakeData,
+  getProducts,
+} from "../user/userSlice";
 import {
   getButterScotchData,
   getChocolateData,
@@ -21,8 +26,6 @@ import {
 } from "../products/productSlice";
 
 const MainScreen = ({ route, navigation }) => {
-  // const { id } = route?.params;
-
   const navigater = useNavigation();
   const dispatch = useDispatch();
 
@@ -41,6 +44,7 @@ const MainScreen = ({ route, navigation }) => {
     dispatch(getIcecreamDetails());
     dispatch(getChocolateDetail());
     dispatch(allInOneApi());
+    dispatch(SaveAddress());
   }, []);
   useLayoutEffect(() => {
     navigater.setOptions({

@@ -8,6 +8,9 @@ module.exports = {
         bgColor: "#E4AC4F",
         textColor: "#61677A",
       },
+      backgroundImage: {
+        splashscreen: "url('/assets/frozenlogo.png')",
+      },
     },
   },
   plugins: [],

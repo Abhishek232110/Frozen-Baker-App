@@ -6,19 +6,22 @@ import { Text, TouchableOpacity, View } from "react-native";
 import AllProductItems from "../../products/components/allProducts";
 import SearchItem from "./searchItem";
 import { useSelector } from "react-redux";
+import HomeComponent from "./home";
 
 export default function HeaderComponnet({ navigation }) {
   const [filterData, setFilteredData] = useState([]);
+  const [query, setQuery] = useState("");
   const { users, loading } = useSelector((state) => state?.product);
   useEffect(() => {
     setFilteredData(users ? users : []);
   }, [users]);
 
   const onQuery = (incomingQuery) => {
+    setQuery(incomingQuery);
     const filterRes = users.filter((item) =>
       item.flavour.toLowerCase().includes(incomingQuery.toLowerCase())
     );
-    console.log("filterRes", filterRes);
+
     if (filterRes) {
       setFilteredData(filterRes);
     }
@@ -50,11 +53,16 @@ export default function HeaderComponnet({ navigation }) {
         </View>
         <SearchItem onQuery={onQuery} />
       </View>
-      <AllProductItems
-        filterData={filterData}
-        loading={loading}
-        navigation={navigation}
-      />
+
+      {query ? (
+        <AllProductItems
+          filterData={filterData}
+          loading={loading}
+          navigation={navigation}
+        />
+      ) : (
+        <HomeComponent navigation={navigation} />
+      )}
     </>
   );
 }

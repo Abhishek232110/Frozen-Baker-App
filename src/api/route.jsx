@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainScreen from "../home/main";
 import LoginUser from "../user/login";
@@ -19,6 +19,9 @@ import DelivaryLocation from "../account/components/delivaryLocation";
 import WishList from "../account/components/wishlish";
 import AllProductItems from "../products/components/allProducts";
 import BuyNowProduct from "../user/components/buyNow";
+import SplashScreen from "../splashScreen";
+import { useEffect, useLayoutEffect, useState } from "react";
+import AddressPage from "../delivary/components/delivaryDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +45,7 @@ const NavigationScreen = () => {
         <Stack.Screen name="ProductDetails" component={ProductDetails} />
         <Stack.Screen name="GetAllProduct" component={AllProductItems} />
         <Stack.Screen name="DelivaryLoaction" component={DelivaryLocation} />
+        <Stack.Screen name="AddressPage" component={AddressPage} />
 
         <Stack.Screen name="Wishlist" component={WishList} />
         <Stack.Screen
@@ -60,9 +64,25 @@ const NavigationScreen = () => {
 export default NavigationScreen;
 
 function HomeScreen({ navigation }) {
+  const [isSplashScreen, setIsSplashScreen] = useState(true);
+  const navigater = useNavigation();
+  useLayoutEffect(() => {
+    navigater.setOptions({
+      headerShown: false,
+    });
+  });
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSplashScreen(false);
+    }, 3000);
+  }, []);
   return (
     <View className="flex-1  bg-[#FFFFFF] ">
-      <MainScreen navigation={navigation} />
+      {isSplashScreen ? (
+        <SplashScreen />
+      ) : (
+        <MainScreen navigation={navigation} />
+      )}
     </View>
   );
 }

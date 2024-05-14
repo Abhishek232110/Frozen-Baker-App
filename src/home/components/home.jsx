@@ -1,47 +1,58 @@
+import React, { useState, useEffect } from "react";
 import {
-  Image,
-  SafeAreaView,
-  ScrollView,
+  View,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  ScrollView,
+  Image,
 } from "react-native";
-import { View, Text, ActivityIndicator } from "react-native";
-import { useSelector } from "react-redux";
-import bgimg from "../../../assets/cake1.jpg";
+import Slideshow from "react-native-image-slider-show";
+import homeImg from "../../../assets/banner2.jpg";
+import homeImg1 from "../../../assets/Cake1.webp";
+import homeImg2 from "../../../assets/Home.webp";
+import homeImg3 from "../../../assets/love.webp";
+const dataSource = [
+  {
+    url: homeImg,
+  },
+  {
+    url: homeImg1,
+  },
+  {
+    url: homeImg2,
+  },
+  {
+    url: homeImg3,
+  },
+];
 
 const HomeComponent = ({ navigation }) => {
-  const { user, loading } = useSelector((state) => state?.users);
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
+  const [position, setPosition] = useState(0);
+
+  useEffect(() => {
+    const toggle = setInterval(() => {
+      setPosition(position === dataSource.length - 1 ? 0 : position + 1);
+    }, 3000);
+
+    return () => clearInterval(toggle);
+  });
+  const ImageCompo = () => {
+    return <View></View>;
+  };
   return (
-    <>
-      <ScrollView className="p-3">
-        {user?.map((ele) => {
-          return (
-            <>
-              <TouchableOpacity
-                className="border my-3 rounded-md p-2 flex-row items-center"
-                onPress={() => navigation.navigate("Home")}
-              >
-                <Image
-                  source={{ uri: ele.image }}
-                  style={{ width: 100, height: 100 }}
-                />
-                <View>
-                  <Text>{ele.category}</Text>
-                  <Text>{ele.title}</Text>
-                  <Text>{ele.price}</Text>
-                </View>
-              </TouchableOpacity>
-            </>
-          );
-        })}
-      </ScrollView>
-    </>
+    <ScrollView>
+      <View
+        style={{
+          height: 280,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "blue",
+        }}
+      >
+        <Slideshow position={position} dataSource={dataSource} />
+      </View>
+    </ScrollView>
   );
 };
 

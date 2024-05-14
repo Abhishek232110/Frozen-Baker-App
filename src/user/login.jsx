@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import loginimg from "../../assets/login.png";
-// import loginimg from "../../assets/loginimage.jpg";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUserApi } from "../api/apiConfig";
 import {
   Button,
@@ -19,10 +18,12 @@ import {
 const LoginUser = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [paymentId, setPaymentId] = useState();
   const dispatch = useDispatch();
   const getData = async () => {
-    const values = await AsyncStorage.getItem("useremail");
-    console.log("value", values);
+    const paymentId = await AsyncStorage.getItem("paymentId");
+    setPaymentId(paymentId);
+    console.log("value", paymentId);
   };
   getData();
   const handleButtonClick = async () => {
@@ -34,7 +35,11 @@ const LoginUser = ({ navigation }) => {
     if (response.ok) {
       const result = await response.json();
       if (result) {
-        navigation.navigate("Home");
+        if (paymentId) {
+          navigation.navigate("AddressPage");
+        } else {
+          navigation.navigate("Home");
+        }
       }
       let username = result.data.name;
       let useremail = result.data.email;

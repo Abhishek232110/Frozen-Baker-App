@@ -10,13 +10,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import AboutProduct from "./aboutProduct";
-import { addCart, orderedId } from "../../user/userSlice";
+import { addCart, orderedId, paymentId } from "../../user/userSlice";
 import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProductDetails({ route, navigation }) {
   const [productId, setProductId] = useState(" ");
+  const [email, setEmail] = useState();
+
   const { id } = route.params;
   const dispatch = useDispatch();
+  let user = { email: email };
+  const getData = async () => {
+    await AsyncStorage.setItem("paymentId", id);
+    const email = await AsyncStorage.getItem("useremail");
+    setEmail(email);
+  };
+  getData();
   const { loading, users } = useSelector((state) => state?.product);
   const filterData = users.filter((ele) => ele._id === id);
   const CartBuyButton = ({
@@ -42,9 +52,15 @@ export default function ProductDetails({ route, navigation }) {
   };
 
   const buyNow = () => {
-    dispatch(orderedId(productId._id));
-    navigation.navigate("buynow");
+    dispatch(paymentId(id));
+    if (user && user.email) {
+      dispatch(orderedId(productId._id));
+      navigation.navigate("AddressPage");
+    } else {
+      navigation.navigate("SignIn");
+    }
   };
+
   const handlPressEvent = () => {
     dispatch(addCart(productId));
     navigation.navigate("cart");

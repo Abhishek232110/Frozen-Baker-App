@@ -1,6 +1,6 @@
 // authenticationSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllProducts } from "../api/apiConfig";
+import { getAllProducts, uploadAddress } from "../api/apiConfig";
 import axios from "axios";
 
 export const allInOneApi = createAsyncThunk(
@@ -30,6 +30,27 @@ export const getFakeData = createAsyncThunk("getFakeData", async () => {
     setLoading(false);
   }
 });
+
+export const SaveAddress = createAsyncThunk(
+  "userAddress",
+  async ({ formData, date }) => {
+    console.log("form", formData, date);
+    try {
+      const result = await fetch(uploadAddress, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          date,
+        }),
+      });
+      const res = await result.json();
+      // console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "authentication",
   initialState: {
@@ -38,6 +59,7 @@ export const userSlice = createSlice({
     pageNo: 0,
     flavour: "",
     cart: [],
+    paymentId: [],
     orderedId: [],
     user: null,
     loading: false,
@@ -49,6 +71,9 @@ export const userSlice = createSlice({
     },
     orderedId: (state, action) => {
       state.orderedId.push(action.payload);
+    },
+    paymentId: (state, action) => {
+      state.paymentId.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -82,6 +107,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { addCart, orderedId } = userSlice.actions;
+export const { addCart, orderedId, paymentId } = userSlice.actions;
 
 export default userSlice.reducer;
