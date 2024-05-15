@@ -12,6 +12,9 @@ export default function HeaderComponnet({ navigation }) {
   const [filterData, setFilteredData] = useState([]);
   const [query, setQuery] = useState("");
   const { users, loading } = useSelector((state) => state?.product);
+  const { cart } = useSelector((state) => state?.users);
+  const cartCount = cart.length;
+  console.log("cartCount", cartCount);
   useEffect(() => {
     setFilteredData(users ? users : []);
   }, [users]);
@@ -46,9 +49,12 @@ export default function HeaderComponnet({ navigation }) {
             onPress={() => navigation.navigate("cart")}
             className="flex-row  w-9"
           >
-            <View>
+            <View className="absolute">
               <AntDesign name="shoppingcart" size={27} color="#FEB941" />
             </View>
+            <Text className="relative left-5 bottom-3 bg-bgColor rounded-full w-5 text-center h-5 text-white">
+              {cartCount}
+            </Text>
           </TouchableOpacity>
         </View>
         <SearchItem onQuery={onQuery} />

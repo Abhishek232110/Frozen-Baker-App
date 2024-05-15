@@ -23,7 +23,6 @@ const LoginUser = ({ navigation }) => {
   const getData = async () => {
     const paymentId = await AsyncStorage.getItem("paymentId");
     setPaymentId(paymentId);
-    console.log("value", paymentId);
   };
   getData();
   const handleButtonClick = async () => {

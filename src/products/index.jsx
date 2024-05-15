@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import RenderButton from "../common/Button";
-import HomeComponent from "../home/components/home";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Text, TouchableOpacity, View } from "react-native";
 import AllProductItems from "./components/allProducts";
 
 const ProductComponent = ({ navigation }) => {
-  const { users, loading } = useSelector((state) => state.product);
+  const { users, loading } = useSelector((state) => state?.product);
 
   const ProductNavigationButton = ({
     navigation,
@@ -20,7 +17,7 @@ const ProductComponent = ({ navigation }) => {
     return (
       <>
         <TouchableOpacity
-          className="w-36 h-12 border-zinc-500 border rounded-md items-center justify-center"
+          className="w-36 h-12 border-zinc-400 border rounded-md items-center justify-center"
           onPress={handleRenderComponent}
         >
           <Text>{screenname}</Text>
@@ -31,8 +28,8 @@ const ProductComponent = ({ navigation }) => {
 
   return (
     <>
-      <View className="py-3 px-3">
-        <View className="flex-row justify-between py-2">
+      <View className="px-3">
+        <View className="flex-row justify-between py-2 px-1">
           <ProductNavigationButton
             screenname="Cake"
             navigation={navigation}
@@ -44,7 +41,7 @@ const ProductComponent = ({ navigation }) => {
             rendercomponentname="Pastries"
           />
         </View>
-        <View className="flex-row justify-between py-2">
+        <View className="flex-row justify-between px-1">
           <ProductNavigationButton
             screenname="Icecreams"
             navigation={navigation}
@@ -56,6 +53,11 @@ const ProductComponent = ({ navigation }) => {
             rendercomponentname="Chocolates"
           />
         </View>
+        <AllProductItems
+          filterData={users}
+          loading={loading}
+          navigation={navigation}
+        />
       </View>
     </>
   );

@@ -48,37 +48,37 @@ export default function AddressPage() {
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("name", e)}
+          onChangeText={(name) => handleInputChange("name", name)}
           value={formData.name}
           placeholder="Enter name.."
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("email", e)}
+          onChangeText={(email) => handleInputChange("email", email)}
           value={formData.email}
           placeholder="Enter email.."
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("number", e)}
+          onChangeText={(number) => handleInputChange("number", number)}
           value={formData.number}
           placeholder="Enter number.."
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("pincode", e)}
+          onChangeText={(pincode) => handleInputChange("pincode", pincode)}
           value={formData.pincode}
           placeholder="Enter pincode.."
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("city", e)}
+          onChangeText={(city) => handleInputChange("city", city)}
           value={formData.city}
           placeholder="Enter city.."
         />
         <TextInput
           className={className}
-          onChangeText={(e) => handleInputChange("address", e)}
+          onChangeText={(address) => handleInputChange("address", address)}
           value={formData.address}
           placeholder="Enter address.."
         />
