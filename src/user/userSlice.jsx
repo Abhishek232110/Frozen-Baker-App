@@ -61,6 +61,7 @@ export const userSlice = createSlice({
     cart: [],
     paymentId: [],
     orderedId: [],
+    item: [],
     user: null,
     loading: false,
     error: null,
@@ -74,6 +75,9 @@ export const userSlice = createSlice({
     },
     paymentId: (state, action) => {
       state.paymentId.push(action.payload);
+    },
+    singleItem: (state, action) => {
+      state.item = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -107,6 +111,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { addCart, orderedId, paymentId } = userSlice.actions;
+export const { addCart, orderedId, paymentId, singleItem } = userSlice.actions;
 
 export default userSlice.reducer;

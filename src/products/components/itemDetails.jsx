@@ -9,8 +9,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { View, Text, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
 
-const IceCreameComponent = ({ navigation }) => {
-  const { icecream, loading } = useSelector((state) => state?.product);
+const ItemDetails = ({ navigation }) => {
+  const { item, loading } = useSelector((state) => state?.users);
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -26,7 +26,7 @@ const IceCreameComponent = ({ navigation }) => {
           paddingRight: 8,
         }}
         numColumns="2"
-        data={icecream}
+        data={item}
         renderItem={({ item }) => (
           <TouchableOpacity
             className=" my-3 rounded-md mx-auto space-y-1"
@@ -58,4 +58,4 @@ const IceCreameComponent = ({ navigation }) => {
   );
 };
 
-export default IceCreameComponent;
+export default ItemDetails;

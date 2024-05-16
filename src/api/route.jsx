@@ -8,10 +8,6 @@ import AccountScreen from "../account";
 import PersonalInfoComponent from "../account/components/personalInfo";
 import SavedAddressComponent from "../account/components/saveAddresses";
 import ProductComponent from "../products";
-import CakeComponent from "../products/components/cake";
-import PastryComponent from "../products/components/pastry";
-import IceCreameComponent from "../products/components/icecream";
-import ChocolateComponent from "../products/components/chocolate";
 import PrivacyPolicy from "../account/components/privacyPolicy";
 import { View } from "react-native";
 import ProductDetails from "../products/components/productDetails";
@@ -22,6 +18,7 @@ import BuyNowProduct from "../user/components/buyNow";
 import SplashScreen from "../splashScreen";
 import { useEffect, useLayoutEffect, useState } from "react";
 import AddressPage from "../delivary/components/delivaryDetails";
+import ItemDetails from "../products/components/itemDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,16 +34,13 @@ const NavigationScreen = () => {
         <Stack.Screen name="buynow" component={BuyNowProduct} />
         <Stack.Screen name="Account" component={AccountScreen} />
         <Stack.Screen name="Products" component={ProductComponent} />
-        <Stack.Screen name="Cakes" component={CakeComponent} />
-        <Stack.Screen name="Pastries" component={PastryComponent} />
-        <Stack.Screen name="Icecreams" component={IceCreameComponent} />
-        <Stack.Screen name="Chocolates" component={ChocolateComponent} />
+
+        <Stack.Screen name="ItemDetails" component={ItemDetails} />
         <Stack.Screen name="Privacy/Policy" component={PrivacyPolicy} />
         <Stack.Screen name="ProductDetails" component={ProductDetails} />
         <Stack.Screen name="GetAllProduct" component={AllProductItems} />
         <Stack.Screen name="DelivaryLoaction" component={DelivaryLocation} />
         <Stack.Screen name="AddressPage" component={AddressPage} />
-
         <Stack.Screen name="Wishlist" component={WishList} />
         <Stack.Screen
           name="Personal Information"

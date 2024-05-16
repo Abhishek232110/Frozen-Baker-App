@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  FlatList,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { ImageSlider } from "react-native-image-slider-banner";
 import cake from "../../../assets/homecake/cake.webp";
 import ann from "../../../assets/homecake/ann.jpg";
 import birthday from "../../../assets/homecake/birthday.jpg";
 import mother from "../../../assets/homecake/mother1.webp";
+import NavigationList from "../../products/navigationList";
 const dataSource = [
   {
     img:
@@ -40,12 +32,12 @@ const dataSource = [
 const DetailButton = ({ title, image }) => {
   return (
     <>
-      <TouchableOpacity className="flex-col mx-auto items-center w-44 bg-[#F4EDE7] space-y-1 rounded-md my-1 py-2 ">
+      <TouchableOpacity className="flex-col mx-auto items-center px-6 bg-[#F4EDE7] space-y-1 rounded-md my-1 py-2 ">
         <Image
           source={image}
           style={{
-            width: 140,
-            height: 120,
+            width: 130,
+            height: 110,
             borderRadius: 5,
           }}
         />
@@ -59,9 +51,7 @@ const HomeComponent = ({ navigation }) => {
     <>
       <ScrollView>
         <View className="space-y-1 px-3">
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
+          <View style={{ flexDirection: "row" }}>
             <DetailButton image={cake} title="Cake" />
             <DetailButton image={ann} title="Annivarsary" />
           </View>
@@ -69,19 +59,22 @@ const HomeComponent = ({ navigation }) => {
             <DetailButton image={birthday} title="Birthday Cake" />
             <DetailButton image={mother} title="Mother's Day" />
           </View>
-
-          <TouchableOpacity
-            className=" rounded-md px-1"
-            onPress={() => navigation.navigate("Account")}
+          <View
+            style={{
+              paddingHorizontal: 4,
+            }}
           >
             <ImageSlider
               data={dataSource}
               caroselImageStyle={{ resizeMode: "stretch" }}
               autoPlay={true}
               closeIconColor="#fff"
+              onClick={() => navigation.navigate("Account")}
             />
-          </TouchableOpacity>
-          <View></View>
+          </View>
+          <View>
+            <NavigationList navigation={navigation} />
+          </View>
         </View>
       </ScrollView>
     </>

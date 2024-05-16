@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         buttomColor: "#E4AC4F",
-        bgColor: "#F4EDE7",
+        bgColor: "#FEB941",
         textColor: "#61677A",
       },
       backgroundImage: {

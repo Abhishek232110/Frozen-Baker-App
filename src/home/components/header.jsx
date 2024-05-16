@@ -14,7 +14,6 @@ export default function HeaderComponnet({ navigation }) {
   const { users, loading } = useSelector((state) => state?.product);
   const { cart } = useSelector((state) => state?.users);
   const cartCount = cart.length;
-  console.log("cartCount", cartCount);
   useEffect(() => {
     setFilteredData(users ? users : []);
   }, [users]);
@@ -52,14 +51,13 @@ export default function HeaderComponnet({ navigation }) {
             <View className="absolute">
               <AntDesign name="shoppingcart" size={27} color="#FEB941" />
             </View>
-            <Text className="relative left-5 bottom-3 bg-bgColor rounded-full w-5 text-center h-5 text-white">
+            <Text className="relative left-5 bottom-3 bg-buttomColor rounded-full w-5 text-center h-5 text-white">
               {cartCount}
             </Text>
           </TouchableOpacity>
         </View>
         <SearchItem onQuery={onQuery} />
       </View>
-
       {query ? (
         <AllProductItems
           filterData={filterData}

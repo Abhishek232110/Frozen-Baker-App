@@ -39,7 +39,7 @@ const AllProductItems = ({ navigation, loading, filterData }) => {
               />
               <View>
                 <View className="flex-row items-center justify-start space-x-1">
-                  <Text className="text-bgColor">Flavour :</Text>
+                  <Text className="text-buttomColor">Flavour :</Text>
                   <Text className="text-[#61677A]">{item.flavour}</Text>
                 </View>
 

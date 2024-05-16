@@ -102,7 +102,7 @@ export default function ProductDetails({ route, navigation }) {
                         <View className="flex-1  items-start mx-3 space-y-1 pt-3 border-b border-zinc-400 pb-4">
                           {item.name ? (
                             <View className="flex-row space-x-3">
-                              <Text className="text-bgColor">Name : </Text>
+                              <Text className="text-buttomColor">Name : </Text>
                               <Text className="text-textColor">
                                 {item.name}
                               </Text>
