@@ -12,7 +12,6 @@ const NavigationList = ({ navigation }) => {
     (state) => state?.product
   );
   const dispatch = useDispatch();
-  console.log("pastr", pastry);
   const ProductNavigationButton = ({
     navigation,
     screenname,
