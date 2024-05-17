@@ -5,6 +5,10 @@ import ann from "../../../assets/homecake/ann.jpg";
 import birthday from "../../../assets/homecake/birthday.jpg";
 import mother from "../../../assets/homecake/mother1.webp";
 import NavigationList from "../../products/navigationList";
+import AllProductItems from "../../products/components/allProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { singleItem } from "../../user/userSlice";
+
 const dataSource = [
   {
     img:
@@ -29,24 +33,33 @@ const dataSource = [
   },
 ];
 
-const DetailButton = ({ title, image }) => {
-  return (
-    <>
-      <TouchableOpacity className="flex-col mx-auto items-center px-6 bg-[#F4EDE7] space-y-1 rounded-md my-1 py-2 ">
-        <Image
-          source={image}
-          style={{
-            width: 130,
-            height: 110,
-            borderRadius: 5,
-          }}
-        />
-        <Text>{title}</Text>
-      </TouchableOpacity>
-    </>
-  );
-};
 const HomeComponent = ({ navigation }) => {
+  const { users, loading } = useSelector((state) => state?.product);
+  const dispatch = useDispatch();
+  const DetailButton = ({ title, image }) => {
+    const handleRenderComponent = () => {
+      dispatch(singleItem(users));
+      navigation.navigate("ItemDetails");
+    };
+    return (
+      <>
+        <TouchableOpacity
+          className="flex-col mx-auto items-center px-6 bg-[#F4EDE7] space-y-1 rounded-md my-1 py-2 "
+          onPress={handleRenderComponent}
+        >
+          <Image
+            source={image}
+            style={{
+              width: 130,
+              height: 110,
+              borderRadius: 5,
+            }}
+          />
+          <Text>{title}</Text>
+        </TouchableOpacity>
+      </>
+    );
+  };
   return (
     <>
       <ScrollView>
