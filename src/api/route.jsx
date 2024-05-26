@@ -22,6 +22,7 @@ import ItemDetails from "../products/components/itemDetails";
 import MyOrderComponent from "../account/components/myOrder";
 import Reminders from "../account/components/reminders";
 import ChatWithUs from "../account/components/chatWithUs";
+import PaymentComponent from "../account/components/payment";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,7 @@ const NavigationScreen = () => {
         <Stack.Screen name="MyOrder" component={MyOrderComponent} />
         <Stack.Screen name="Reminder" component={Reminders} />
         <Stack.Screen name="ChatWith" component={ChatWithUs} />
+        <Stack.Screen name="Payment" component={PaymentComponent} />
         <Stack.Screen
           name="Personal Information"
           component={PersonalInfoComponent}
