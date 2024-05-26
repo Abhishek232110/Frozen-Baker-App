@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
   return (
     <ScrollView>
       <View paddingLeft={2} paddingRight={2} paddingTop={3} space={3}>
-        {/* <Text className="leading-5">
+        <Text className="leading-5">
           <Text className="text-lg font-medium text-red-400">Note :</Text> This
           Privacy Policy forms an integral part of the Terms of Use and other
           policies, disclaimers etc. available on the Website of FNP and shall
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
           provide us online is securely encrypted. We will use technical and
           organisational measures to safeguard your Personal Information and we
           ensure that your Personal Information is saved on secure servers.
-        </Text> */}
+        </Text>
       </View>
     </ScrollView>
   );

@@ -21,18 +21,33 @@ const AccountScreen = ({ navigation }) => {
     setEmail(email);
   };
   getData();
-  const UseableComp = ({ title1, title2, title1Icon, title2Icon }) => {
+  const UseableComp = ({
+    title1,
+    title2,
+    title1Icon,
+    title2Icon,
+    onpressTitle2,
+    onpressTitle1,
+  }) => {
     return (
       <>
         <View className="flex-row justify-between mt-5">
-          <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
-            <Text>{title1Icon}</Text>
-            <Text className="text-textColor">{title1}</Text>
-          </View>
-          <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
-            <Text>{title2Icon}</Text>
-            <Text className="text-textColor">{title2}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(`${onpressTitle1}`)}
+          >
+            <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
+              <Text>{title1Icon}</Text>
+              <Text className="text-textColor">{title1}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(`${onpressTitle2}`)}
+          >
+            <View className="border border-zinc-400 flex-row justify-center items-center space-x-4  w-44 py-3  rounded-lg">
+              <Text>{title2Icon}</Text>
+              <Text className="text-textColor">{title2}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </>
     );
@@ -64,11 +79,13 @@ const AccountScreen = ({ navigation }) => {
           </View>
           <View className="border-b border-zinc-400 pb-5">
             <UseableComp
+              onpressTitle1="MyOrder"
               title1="My Orders"
               title1Icon={
                 <Ionicons name="cube-outline" size={20} color="#61677A" />
               }
-              title2="Remainders"
+              onpressTitle2="Reminder"
+              title2="Reminders"
               title2Icon={
                 <MaterialCommunityIcons
                   name="bell-ring-outline"
@@ -78,6 +95,7 @@ const AccountScreen = ({ navigation }) => {
               }
             />
             <UseableComp
+              onpressTitle1="ChatWith"
               title1="Chat with Us"
               title1Icon={
                 <Ionicons
@@ -86,6 +104,7 @@ const AccountScreen = ({ navigation }) => {
                   color="#61677A"
                 />
               }
+              onpressTitle2="Wishlist"
               title2="Wishlist"
               title2Icon={
                 <FontAwesome6 name="heart" size={20} color="#61677A" />
