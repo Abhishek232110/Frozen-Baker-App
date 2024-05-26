@@ -19,6 +19,7 @@ import SplashScreen from "../splashScreen";
 import { useEffect, useLayoutEffect, useState } from "react";
 import AddressPage from "../delivary/components/delivaryDetails";
 import ItemDetails from "../products/components/itemDetails";
+import PaymentComponent from "../account/components/payment";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +35,7 @@ const NavigationScreen = () => {
         <Stack.Screen name="buynow" component={BuyNowProduct} />
         <Stack.Screen name="Account" component={AccountScreen} />
         <Stack.Screen name="Products" component={ProductComponent} />
-
+        <Stack.Screen name="Payment" component={PaymentComponent} />
         <Stack.Screen name="ItemDetails" component={ItemDetails} />
         <Stack.Screen name="Privacy/Policy" component={PrivacyPolicy} />
         <Stack.Screen name="ProductDetails" component={ProductDetails} />

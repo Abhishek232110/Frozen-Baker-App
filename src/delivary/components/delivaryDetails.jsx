@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import {
   TouchableOpacity,
   Text,
@@ -7,14 +7,13 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { delivaryId } from "../../user/userSlice";
+
 import DateTimePicker from "react-native-ui-datepicker";
 import dayjs from "dayjs";
 import { uploadAddress } from "../../api/apiConfig";
 
-export default function AddressPage() {
-  const dispatch = useDispatch();
-  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-full ";
+export default function AddressPage({ navigation }) {
+  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-fit";
   const [date, setDate] = useState(dayjs());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,27 +23,30 @@ export default function AddressPage() {
   const [address, setAddress] = useState("");
 
   const handleFormSubmit = async () => {
-    try {
-      const result = await fetch(uploadAddress, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          pincode,
-          address,
-          city,
-          number,
-          date,
-        }),
-      });
-      const res = await result.json();
-      const id = res._id;
-      dispatch(delivaryId(id));
-      console.log("response", res._id);
-    } catch (error) {
-      console.log(error);
-    }
+    if (name.length > 2 && email.length > 15 && number.length > 8)
+      try {
+        const result = await fetch(uploadAddress, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            pincode,
+            address,
+            city,
+            number,
+            date,
+          }),
+        });
+        const res = await result.json();
+        const id = res._id;
+
+        {
+          id && navigation.navigate("Payment");
+        }
+      } catch (error) {
+        console.log(error);
+      }
   };
 
   return (
@@ -58,26 +60,32 @@ export default function AddressPage() {
           date={date}
           onChange={(params) => setDate(params.date)}
         />
+        <View>
+          <Text>Name</Text>
+          <TextInput
+            className={className}
+            onChangeText={(name) => setName(name)}
+            value={name}
+            placeholder="Enter name.."
+          />
+        </View>
         <TextInput
           className={className}
-          onChangeText={(name) => setName(name)}
-          value={name}
-          placeholder="Enter name.."
-        />
-        <TextInput
-          className={className}
+          keyboardType="email-address"
           onChangeText={(email) => setEmail(email)}
           value={email}
           placeholder="Enter email.."
         />
         <TextInput
           className={className}
+          keyboardType="number-pad"
           onChangeText={(number) => setNumber(number)}
           value={number}
           placeholder="Enter number.."
         />
         <TextInput
           className={className}
+          keyboardType="number-pad"
           onChangeText={(pincode) => setPincode(pincode)}
           value={pincode}
           placeholder="Enter pincode.."
