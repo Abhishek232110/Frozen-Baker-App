@@ -30,13 +30,16 @@
     "react-dom": "18.2.0",
     "react-icons": "^5.1.0",
     "react-native": "0.73.6",
+    "react-native-geolocation-service": "^5.3.1",
     "react-native-image-slider": "^2.0.3",
     "react-native-image-slider-banner": "^1.0.3",
     "react-native-image-slider-box": "^2.0.7",
     "react-native-image-slider-show": "^1.0.3",
     "react-native-ui-datepicker": "^2.0.2",
     "react-native-web": "~0.19.6",
-    "react-redux": "^9.1.1"
+    "react-redux": "^9.1.1",
+    "expo-location": "~16.5.5",
+    "react-native-maps": "1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

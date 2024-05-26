@@ -21,12 +21,7 @@ export default function ProductDetails({ route, navigation }) {
   const { id } = route.params;
   const dispatch = useDispatch();
   let user = { email: email };
-  const getData = async () => {
-    await AsyncStorage.setItem("paymentId", id);
-    const email = await AsyncStorage.getItem("useremail");
-    setEmail(email);
-  };
-  getData();
+
   const { loading, users } = useSelector((state) => state?.product);
   const filterData = users.filter((ele) => ele._id === id);
   const CartBuyButton = ({
@@ -76,6 +71,12 @@ export default function ProductDetails({ route, navigation }) {
       </>
     );
   };
+  const getData = async () => {
+    await AsyncStorage.setItem("paymentId", id);
+    const email = await AsyncStorage.getItem("useremail");
+    setEmail(email);
+  };
+  getData();
 
   return (
     <>

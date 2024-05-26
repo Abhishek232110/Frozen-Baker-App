@@ -15,7 +15,7 @@ export default function SplashScreen() {
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
-      toValue: 1,
+      toValue: 2,
       duration: 3000,
       useNativeDriver: true,
     }).start();

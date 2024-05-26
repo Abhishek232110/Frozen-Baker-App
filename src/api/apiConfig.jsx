@@ -1,4 +1,4 @@
-const serverHost = "http://192.168.1.11:3001";
+const serverHost = "http://192.168.121.122:3001";
 
 // get Apis
 export const getAddress = `${serverHost}/api/get/address`;
