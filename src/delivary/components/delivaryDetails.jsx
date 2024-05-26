@@ -7,32 +7,44 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { SaveAddress } from "../../user/userSlice";
+import { delivaryId } from "../../user/userSlice";
 import DateTimePicker from "react-native-ui-datepicker";
 import dayjs from "dayjs";
+import { uploadAddress } from "../../api/apiConfig";
 
 export default function AddressPage() {
-  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-full ";
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    number: "",
-    pincode: "",
-    city: "",
-    address: "",
-  });
-  const [date, setDate] = useState(dayjs());
-
   const dispatch = useDispatch();
-  const handleFormSubmit = () => {
-    console.log("Form Data:", formData);
-    dispatch(SaveAddress(...formData, date));
-  };
-  const handleInputChange = (key, value) => {
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
+  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-full ";
+  const [date, setDate] = useState(dayjs());
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+
+  const handleFormSubmit = async () => {
+    try {
+      const result = await fetch(uploadAddress, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          pincode,
+          address,
+          city,
+          number,
+          date,
+        }),
+      });
+      const res = await result.json();
+      const id = res._id;
+      dispatch(delivaryId(id));
+      console.log("response", res._id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -48,41 +60,40 @@ export default function AddressPage() {
         />
         <TextInput
           className={className}
-          onChangeText={(name) => handleInputChange("name", name)}
-          value={formData.name}
+          onChangeText={(name) => setName(name)}
+          value={name}
           placeholder="Enter name.."
         />
         <TextInput
           className={className}
-          onChangeText={(email) => handleInputChange("email", email)}
-          value={formData.email}
+          onChangeText={(email) => setEmail(email)}
+          value={email}
           placeholder="Enter email.."
         />
         <TextInput
           className={className}
-          onChangeText={(number) => handleInputChange("number", number)}
-          value={formData.number}
+          onChangeText={(number) => setNumber(number)}
+          value={number}
           placeholder="Enter number.."
         />
         <TextInput
           className={className}
-          onChangeText={(pincode) => handleInputChange("pincode", pincode)}
-          value={formData.pincode}
+          onChangeText={(pincode) => setPincode(pincode)}
+          value={pincode}
           placeholder="Enter pincode.."
         />
         <TextInput
           className={className}
-          onChangeText={(city) => handleInputChange("city", city)}
-          value={formData.city}
+          onChangeText={(city) => setCity(city)}
+          value={city}
           placeholder="Enter city.."
         />
         <TextInput
           className={className}
-          onChangeText={(address) => handleInputChange("address", address)}
-          value={formData.address}
+          onChangeText={(address) => setAddress(address)}
+          value={address}
           placeholder="Enter address.."
         />
-
         <TouchableOpacity
           onPress={handleFormSubmit}
           className="w-full bg-bgColor items-center justify-center h-11 rounded-md my-5"

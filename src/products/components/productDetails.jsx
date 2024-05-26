@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   ScrollView,
@@ -23,7 +24,7 @@ export default function ProductDetails({ route, navigation }) {
   let user = { email: email };
 
   const { loading, users } = useSelector((state) => state?.product);
-  const filterData = users.filter((ele) => ele._id === id);
+  const filterData = users?.filter((ele) => ele._id === id);
   const CartBuyButton = ({
     buttontitle,
     buttonicon,

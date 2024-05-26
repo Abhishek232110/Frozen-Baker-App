@@ -31,26 +31,20 @@ export const getFakeData = createAsyncThunk("getFakeData", async () => {
   }
 });
 
-export const SaveAddress = createAsyncThunk(
-  "userAddress",
-  async ({ formData, date }) => {
-    console.log("form", formData, date);
-    try {
-      const result = await fetch(uploadAddress, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          date,
-        }),
-      });
-      const res = await result.json();
-      // console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+export const SaveAddress = createAsyncThunk("userAddress", async ({ name }) => {
+  console.log("name", name);
+  try {
+    const result = await fetch(uploadAddress, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    const res = await result.json();
+    console.log(res);
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 export const userSlice = createSlice({
   name: "authentication",
   initialState: {
@@ -62,6 +56,7 @@ export const userSlice = createSlice({
     paymentId: [],
     orderedId: [],
     item: [],
+    addId: {},
     user: null,
     loading: false,
     error: null,
@@ -78,6 +73,9 @@ export const userSlice = createSlice({
     },
     singleItem: (state, action) => {
       state.item = action.payload;
+    },
+    delivaryId: (state, action) => {
+      state.addId = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -111,6 +109,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { addCart, orderedId, paymentId, singleItem } = userSlice.actions;
+export const {
+  delivaryId,
+  addCart,
+  orderedId,
+  paymentId,
+  singleItem,
+} = userSlice.actions;
 
 export default userSlice.reducer;

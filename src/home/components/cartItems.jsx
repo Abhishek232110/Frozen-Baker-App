@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const CartItems = ({ navigation }) => {
   const { cart, loading } = useSelector((state) => state?.users);
-  console.log("cart", cart);
 
   return (
     <>

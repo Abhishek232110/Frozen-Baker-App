@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const AccountScreen = ({ navigation }) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+
   let user = { name: name, email: email };
   const getData = async () => {
     const name = await AsyncStorage.getItem("username");

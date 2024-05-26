@@ -1,4 +1,4 @@
-const serverHost = "http://192.168.121.122:3001";
+const serverHost = "http://192.168.80.122:3001";
 
 // get Apis
 export const getAddress = `${serverHost}/api/get/address`;
@@ -24,7 +24,7 @@ export const createDelivaryDetails = `${serverHost}/api/upload/delivary/informat
 export const uploadPastryApi = `${serverHost}/api/upload/pastry`;
 export const uploadIcecreamApi = `${serverHost}/api/upload/icecream`;
 export const uploadChocolateApi = `${serverHost}/api/upload/chocolate`;
-export const uploadAddress = `${serverHost}/api/upload/address`;
+export const uploadAddress = `${serverHost}/api/upload/delivary/information`;
 
 // all in one
 export const getAllProducts = `${serverHost}/api/products`;
