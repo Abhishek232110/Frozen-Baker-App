@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Device from "expo-device";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function DelivaryLocation() {
@@ -61,7 +61,6 @@ export default function DelivaryLocation() {
       </TouchableOpacity>
       {errorMsg ? <Text style={styles.errorText}>{errorMsg}</Text> : null}
       <StatusBar style="auto" />
-
       {location ? (
         <MapView
           style={styles.map}
@@ -71,7 +70,14 @@ export default function DelivaryLocation() {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-        />
+        >
+          <Marker
+            coordinate={{
+              latitude: location?.latitude,
+              longitude: location?.longitude,
+            }}
+          />
+        </MapView>
       ) : null}
     </View>
   );

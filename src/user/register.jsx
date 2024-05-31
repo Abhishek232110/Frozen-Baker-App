@@ -56,6 +56,7 @@ const RegisterUser = ({ navigation }) => {
             <Text className="text-base pb-2">Email ID</Text>
             <TextInput
               maxLength={30}
+              keyboardType="email-address"
               type="email"
               onChangeText={(e) => setEmail(e)}
               className="bg-zinc-200 h-14 rounded-md pl-2 text-base"
