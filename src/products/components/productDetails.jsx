@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   ActivityIndicator,
   FlatList,
@@ -7,12 +10,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import AboutProduct from "./aboutProduct";
 import { addCart, orderedId, paymentId } from "../../user/userSlice";
-import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProductDetails({ route, navigation }) {
@@ -25,6 +26,41 @@ export default function ProductDetails({ route, navigation }) {
 
   const { loading, users } = useSelector((state) => state?.product);
   const filterData = users?.filter((ele) => ele._id === id);
+
+  useEffect(() => {
+    const getData = async () => {
+      await AsyncStorage.setItem("paymentId", id);
+      const email = await AsyncStorage.getItem("useremail");
+      setEmail(email);
+    };
+    getData();
+  }, [id]);
+
+  const buyNow = () => {
+    dispatch(paymentId(id));
+    if (user && user.email) {
+      dispatch(orderedId(productId._id));
+      navigation.navigate("AddressPage");
+    } else {
+      navigation.navigate("SignIn");
+    }
+  };
+
+  const CakeData = ({ weight, title }) => {
+    return (
+      <>
+        <View className="flex-row items-center space-x-2">
+          <Text className="text-bgColor text-base">{title} :</Text>
+          <Text className="text-[#61677A]">{weight}</Text>
+        </View>
+      </>
+    );
+  };
+
+  const handlPressEvent = () => {
+    dispatch(addCart(productId));
+    navigation.navigate("cart");
+  };
   const CartBuyButton = ({
     buttontitle,
     buttonicon,
@@ -46,38 +82,7 @@ export default function ProductDetails({ route, navigation }) {
       </>
     );
   };
-
-  const buyNow = () => {
-    dispatch(paymentId(id));
-    if (user && user.email) {
-      dispatch(orderedId(productId._id));
-      navigation.navigate("AddressPage");
-    } else {
-      navigation.navigate("SignIn");
-    }
-  };
-
-  const handlPressEvent = () => {
-    dispatch(addCart(productId));
-    navigation.navigate("cart");
-  };
-
-  const CakeData = ({ weight, title }) => {
-    return (
-      <>
-        <View className="flex-row items-center space-x-2">
-          <Text className="text-bgColor text-base">{title} :</Text>
-          <Text className="text-[#61677A]">{weight}</Text>
-        </View>
-      </>
-    );
-  };
-  const getData = async () => {
-    await AsyncStorage.setItem("paymentId", id);
-    const email = await AsyncStorage.getItem("useremail");
-    setEmail(email);
-  };
-  getData();
+  // Ensure useEffect runs when `id` changes
 
   return (
     <>

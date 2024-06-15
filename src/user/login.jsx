@@ -77,13 +77,15 @@ const LoginUser = ({ navigation }) => {
               onPress={handleButtonClick}
               className="bg-buttomColor h-14 flex-row justify-center items-center rounded-md"
             >
-              <Text className="text-base text-white">SIGNIN</Text>
+              <Text className="text-base text-white">SIGN IN</Text>
             </TouchableOpacity>
             <TouchableOpacity
               className="flex-row justify-end ml-auto mt-3"
               onPress={() => navigation.navigate("SignUp")}
             >
-              <Text className="border-b text-base text-indigo-600">SignUp</Text>
+              <Text className="border-b text-base text-indigo-600">
+                If you are not SignIn than SignUp
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

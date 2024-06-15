@@ -77,7 +77,7 @@ const RegisterUser = ({ navigation }) => {
               onPress={registerUser}
               className="bg-buttomColor h-14 flex-row justify-center items-center rounded-md"
             >
-              <Text className="text-base text-white">SIGNUP</Text>
+              <Text className="text-base text-white">SIGN UP</Text>
             </TouchableOpacity>
           </View>
         </View>
