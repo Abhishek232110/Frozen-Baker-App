@@ -13,7 +13,7 @@ import dayjs from "dayjs";
 import { uploadAddress } from "../../api/apiConfig";
 
 export default function AddressPage({ navigation }) {
-  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-fit";
+  const className = "bg-gray-200 my-2 h-11 px-2 rounded-md w-full";
   const [date, setDate] = useState(dayjs());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ export default function AddressPage({ navigation }) {
   const [address, setAddress] = useState("");
 
   const handleFormSubmit = async () => {
-    if (name.length > 2 && email.length > 15 && number.length > 8)
+    if (name.length > 2 && email.length > 10 && number.length > 8)
       try {
         const result = await fetch(uploadAddress, {
           method: "POST",
@@ -60,15 +60,33 @@ export default function AddressPage({ navigation }) {
           date={date}
           onChange={(params) => setDate(params.date)}
         />
-        <View>
-          <Text>Name</Text>
-          <TextInput
-            className={className}
-            onChangeText={(name) => setName(name)}
-            value={name}
-            placeholder="Enter name.."
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ width: "46%" }}>
+            <Text>Name</Text>
+            <TextInput
+              className={className}
+              onChangeText={(name) => setName(name)}
+              value={name}
+              placeholder="Enter name.."
+            />
+          </View>
+          <View style={{ width: "46%" }}>
+            <Text>City</Text>
+            <TextInput
+              className={className}
+              onChangeText={(city) => setCity(city)}
+              value={city}
+              placeholder="Enter city.."
+            />
+          </View>
         </View>
+        <Text>Email</Text>
         <TextInput
           className={className}
           keyboardType="email-address"
@@ -76,26 +94,36 @@ export default function AddressPage({ navigation }) {
           value={email}
           placeholder="Enter email.."
         />
-        <TextInput
-          className={className}
-          keyboardType="number-pad"
-          onChangeText={(number) => setNumber(number)}
-          value={number}
-          placeholder="Enter number.."
-        />
-        <TextInput
-          className={className}
-          keyboardType="number-pad"
-          onChangeText={(pincode) => setPincode(pincode)}
-          value={pincode}
-          placeholder="Enter pincode.."
-        />
-        <TextInput
-          className={className}
-          onChangeText={(city) => setCity(city)}
-          value={city}
-          placeholder="Enter city.."
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ width: "46%" }}>
+            <Text>Number</Text>
+            <TextInput
+              className={className}
+              keyboardType="number-pad"
+              onChangeText={(number) => setNumber(number)}
+              value={number}
+              placeholder="Enter number.."
+            />
+          </View>
+          <View style={{ width: "46%" }}>
+            <Text>Pincode</Text>
+            <TextInput
+              className={className}
+              keyboardType="number-pad"
+              onChangeText={(pincode) => setPincode(pincode)}
+              value={pincode}
+              placeholder="Enter pincode.."
+            />
+          </View>
+        </View>
+
+        <Text>Address</Text>
         <TextInput
           className={className}
           onChangeText={(address) => setAddress(address)}

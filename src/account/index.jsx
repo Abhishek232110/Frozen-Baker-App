@@ -5,6 +5,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import loginimg from "../../assets/login.png";
 // import loginimg from "../../assets/pastry.jpg";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import RenderButton from "../common/Button";
 import NavigationButton from "../api/navigateComponents";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -60,8 +62,19 @@ const AccountScreen = ({ navigation }) => {
           <View className="border-b pb-5 border-zinc-400 mt-3">
             {user && user.email && user.name ? (
               <View className="px-4 space-y-1 py-4 bg-stone-200">
-                <Text className="text-lg font-medium">{user.name}</Text>
-                <Text>{user.email}</Text>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <MaterialIcons name="verified-user" size={24} color="gray" />
+                  <Text className="text-lg font-medium pl-2">{user.name}</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Ionicons name="mail-open-outline" size={24} color="gray" />
+                  <Text className="pl-2">{user.email}</Text>
+                </View>
               </View>
             ) : (
               <View className=" py-2  space-y-2">
